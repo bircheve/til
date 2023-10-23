@@ -1,0 +1,22 @@
+CloudFront & Custom Domain Troubleshooting Checklist
+
+SSL/TLS Certificate:
+ Confirm the certificate includes the desired domain name (e.g., links.simplyfit.ai).
+ Verify the certificate's status. It should be 'Issued', not 'Pending' or 'Failed'.
+CloudFront Distribution Settings:
+ Confirm the custom domain is listed under 'Alternate Domain Names (CNAMEs)' in the CloudFront distribution.
+ Verify that the correct ACM certificate (or another provider's certificate) is selected for the distribution.
+DNS Propagation:
+ Remember that DNS changes might take time to propagate, ranging from a few minutes to 48 hours.
+ Use DNS lookup tools or dig command to ensure the CNAME correctly points to the CloudFront distribution.
+Copy code
+dig your_custom_domain.com
+Check if it resolves to your CloudFront distribution URL.
+Browser Cache:
+ Clear browser cache or try from a different browser/incognito mode. Avoid getting tricked by cached error responses.
+SSL/TLS Configuration on CloudFront:
+ Check if CloudFront is set to redirect HTTP to HTTPS or to exclusively serve content over HTTPS.
+ Confirm the security policy (SSL/TLS version) set on CloudFront is compatible with the clients/browsers being tested.
+Reach Out to AWS Support:
+ If everything seems in order but issues persist, contact AWS Support. They can provide insights into specific configurations or hidden errors.
+Note: Proceed cautiously. Making too many changes rapidly can complicate the debugging process. Debugging step-by-step is often the most effective approach.
